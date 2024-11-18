@@ -1,0 +1,29 @@
+@startuml restaurant
+
+title Alur Pelayanan Restoran
+
+start
+:Pelanggan masuk restoran;
+:Pelayan memberikan menu;
+:Pelanggan memesan makanan;
+
+fork
+    :Pelayan mengirim pesanan ke dapur;
+fork again
+    :Pelanggan menunggu di meja;
+end fork
+
+:Koki memasak makanan;
+:Pelayan mengantarkan makanan ke meja;
+
+fork
+    :Pelanggan makan;
+fork again
+    :Pelayan bersiap mengambil piring kotor;
+end fork
+
+:Pelayan memberikan tagihan;
+:Pelangan membayar;
+stop
+
+@enduml
