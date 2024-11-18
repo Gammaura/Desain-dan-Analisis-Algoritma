@@ -1,0 +1,67 @@
+@startuml
+
+title Restoran Gammaura
+
+|#antiquewhite|Pembeli|
+start
+:Pembeli Membuka Aplikasi;
+:Melihat dan Mencari Produk;
+
+fork
+    :Menambahkan Produk ke Keranjang;
+fork again
+    :Menghapus Produk dari Keranjang;
+end fork
+
+if (Apakah ingin melanjutkan Pembelian?) then (Ya)
+else (Tidak)
+    stop
+endif
+
+|#antiquewhite|Sistem|
+while (Apakah ada Produk di Keranjang?) is (Tidak)
+    :Keranjang masih kosong;
+    note right: Pengguna harus memasukkan \nminimal 1 Produk ke Keranjang
+endwhile
+:Keranjang Terisi;
+
+while (Masukkan No Meja) is (Tidak Valid)
+    :No Meja Tidak Tersedia;
+endwhile
+:No Meja Tersedia;
+
+|#antiquewhite|Pembeli|
+:Pembayaran;
+
+if (Pilih metode pembayaran) then (QRIS)
+else (Bayar di kasir)
+endif
+
+|#antiquewhite|Sistem|
+:Validasi Pembayaran;
+
+|#antiquewhite|Sistem|
+while (Pembayaran Valid?) is (Tidak)
+    :Menampilkan Pesan Pembayaran Gagal;
+    note right: Pembayaran Gagal
+endwhile
+:Pembayaran Berhasil;
+
+|#antiquewhite|Chef|
+:Menerima Pesanan;
+:Menyiapkan Pesanan;
+note right: Chef menyiapkan pesanan untuk Pembeli
+:Menyerahkan Makanan/Minuman untuk Dihidangkan;
+
+|#antiquewhite|Pelayan|
+:Menerima Pesanan untuk dihidangkan;
+note right: Pelayan menerima pesanan yang sudah siap dihidangkan
+:Mengantar Pesanan ke Pembeli;
+note right: Pelayan mengantarkan pesanan sesuai nomer meja
+
+|#antiquewhite|Pembeli|
+:Pembeli menerima seluruh pesanan;
+
+stop
+
+@enduml
