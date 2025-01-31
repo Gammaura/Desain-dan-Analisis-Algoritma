@@ -1,0 +1,48 @@
+@startuml
+package "Pemesanan" {
+    actor Pelanggan as P
+    actor BagianPenjualan as BP
+
+    usecase "Mengirim Surat Pesanan" as UC1
+    usecase "Menerima Surat Pesanan" as UC2
+    usecase "Membuat Faktur dan Surat Jalan" as UC3
+
+    P --> UC1
+    UC1 --> UC2
+    BP --> UC2
+    UC2 --> UC3
+    BP --> UC3
+}
+
+package "Pembayaran" {
+    actor Pelanggan as P
+    actor BagianPenjualan as BP
+
+    usecase "Menerima Pembayaran" as UC4
+    usecase "Membuat Kwitansi" as UC5
+
+    P --> UC4
+    BP --> UC4
+    UC4 --> UC5
+    BP --> UC5
+    UC5 --> P : Bukti Kwitansi
+}
+
+package "Pelaporan" {
+    actor KepalaBagianPenjualan as KBP
+    actor BagianPenjualan as BP
+
+    usecase "Membuat Laporan Penjualan" as UC6
+    usecase "Membuat Laporan Pesanan" as UC7
+    usecase "Membuat Laporan Pengiriman" as UC8
+    usecase "Mengirim Laporan ke Kepala Bagian" as UC9
+
+    BP --> UC6
+    BP --> UC7
+    BP --> UC8
+    UC6 --> UC9
+    UC7 --> UC9
+    UC8 --> UC9
+    UC9 --> KBP
+}
+@enduml

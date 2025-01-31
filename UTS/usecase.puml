@@ -1,0 +1,63 @@
+@startuml
+
+skinparam backgroundColor #antiquewhite
+
+left to right direction
+
+actor Pembeli as Pembeli #red
+actor Sistem as Sistem #blue
+actor Chef as Chef #green
+actor Pelayan as Pelayan #yellow
+
+package "Proses Pembelian" {
+    usecase "Membuka Aplikasi" as U1
+    usecase "Melihat dan Mencari Produk" as U2
+    usecase "Menambahkan Produk ke Keranjang" as U3
+    usecase "Menghapus Produk dari Keranjang" as U4
+    usecase "Melakukan Pembayaran" as U5
+    usecase "Menerima Pesanan" as U6
+}
+
+package "Sistem Validasi" {
+    usecase "Validasi Keranjang" as U7
+    usecase "Validasi Nomor Meja" as U8
+    usecase "Validasi Pembayaran" as U9
+}
+
+package "Proses Dapur" {
+    usecase "Menerima Pesanan" as U10
+    usecase "Menyiapkan Pesanan" as U11
+    usecase "Menyerahkan Pesanan untuk Dihidangkan" as U12
+}
+
+package "Proses Penyajian" {
+    usecase "Menerima Pesanan dari Dapur" as U13
+    usecase "Mengantar Pesanan ke Meja" as U14
+}
+
+Pembeli --> U1
+Pembeli --> U2
+Pembeli --> U3
+Pembeli --> U4
+Pembeli --> U5
+Pembeli --> U6
+
+Sistem --> U7
+Sistem --> U8
+Sistem --> U9
+
+Chef --> U10
+Chef --> U11
+Chef --> U12
+
+Pelayan --> U13
+Pelayan --> U14
+
+U3 --> U7 : include
+U5 --> U9 : include
+U6 --> U10 : include
+U8 --> U9 : include
+U12 --> U13 : include
+U13 --> U14 : include
+
+@enduml

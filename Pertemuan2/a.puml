@@ -1,0 +1,24 @@
+@startuml
+
+actor Pelanggan as P
+actor KepalaBagianPenjualan as KBP
+actor BagianPenjualan as BP
+
+P --> (Mengirim Surat Pesanan)
+(Mengirim Surat Pesanan) --> (Menerima Surat Pesanan) : Bagian Penjualan
+BP --> (Menerima Surat Pesanan)
+(Menerima Surat Pesanan) --> (Membuat Faktur dan Surat Jalan)
+BP --> (Membuat Faktur dan Surat Jalan)
+(Membuat Faktur dan Surat Jalan) --> P : Faktur & Surat Jalan
+
+P --> (Mengirim Pembayaran)
+BP --> (Menerima Pembayaran)
+(Menerima Pembayaran) --> (Membuat Kwitansi)
+BP --> (Membuat Kwitansi)
+(Membuat Kwitansi) --> P : Kwitansi
+
+BP --> (Membuat Laporan Penjualan)
+(Membuat Laporan Penjualan) --> KBP : Laporan Bulanan
+BP --> (Mengirim Laporan Penjualan)
+
+@enduml

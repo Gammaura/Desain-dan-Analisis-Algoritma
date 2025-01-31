@@ -1,0 +1,66 @@
+@startuml
+
+left to right direction
+
+actor "Pelanggan" as P
+actor "Bagian Penjualan" as BP
+actor "Kepala Bagian Penjualan" as KBP
+
+rectangle "Sistem Penjualan PT. Nusantara" {
+
+    package "Pemesanan" {
+        usecase "Mengirim Surat Pesanan" as UC1
+        usecase "Mengirim Pembayaran" as UC2
+        
+        usecase "Menerima Faktur dan Surat Jalan" as UC3
+        usecase "Menerima Kwitansi" as UC4
+    }
+
+    package "Penjualan" {
+        usecase "Menerima Surat Pesanan" as UC5
+        usecase "Membuat Faktur dan Surat Jalan" as UC6
+
+        usecase "Menerima Pembayaran" as UC7
+        usecase "Membuat Kwitansi" as UC8
+
+        usecase "Membuat Laporan Penjualan" as UC9
+        usecase "Membuat Laporan Pesanan" as UC10
+        usecase "Membuat Laporan Pengiriman" as UC11
+
+        usecase "Mengirim Laporan ke Kepala Bagian" as UC12
+    }
+
+    package "Laporan" {
+        usecase "Mengatur Laporan" as UC13
+        usecase "Menerima Laporan Penjualan" as UC14
+        usecase "Menerima Laporan Pesanan" as UC15
+        usecase "Menerima Laporan Pengiriman" as UC16
+    }
+}
+
+UC1 -- UC3 : include
+UC2 -- UC4 : include
+
+UC5 -- UC6
+UC7 -- UC8
+
+UC9 -- UC12 
+UC10 -- UC12
+UC11 -- UC12
+
+UC13 -- UC14
+UC13 -- UC15
+UC13 -- UC16
+
+P -- UC1
+P -- UC2
+
+BP -- UC5
+BP -- UC7
+BP -- UC9
+BP -- UC10
+BP -- UC11
+
+KBP -- UC13
+
+@enduml
