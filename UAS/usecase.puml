@@ -1,0 +1,52 @@
+@startuml
+
+skinparam backgroundColor #antiquewhite
+
+left to right direction
+
+actor Calon_Member as Calon #green
+actor Member as Member #red
+actor Admin as Admin #blue
+
+package "Aktivitas Calon Member" {
+    usecase "Mendaftarkan Keanggotaan" as U0
+}
+
+package "Aktivitas Member" {
+    usecase "Melihat Data Anggota" as U1
+    usecase "Melihat Data Kesehatan" as U2
+    usecase "Melihat Jadwal Harian" as U3
+    usecase "Melihat Jadwal Mingguan" as U4
+    usecase "Melihat Jadwal Pertandingan" as U5
+    usecase "Melihat Peringkat Pertandingan" as U6
+}
+
+package "Aktivitas Admin" {
+    usecase "Mengedit Data Anggota" as U7
+    usecase "Mengedit Data Kesehatan" as U8
+    usecase "Mengedit Jadwal Harian" as U9
+    usecase "Mengedit Jadwal Mingguan" as U10
+    usecase "Mengedit Jadwal Pertandingan" as U11
+    usecase "Mengedit Peringkat Pertandingan" as U12
+}
+
+Calon --> U0
+
+Member --> U1
+Member --> U2
+Member --> U3
+Member --> U4
+Member --> U5
+Member --> U6
+
+Admin --> U7
+Admin --> U8
+Admin --> U9
+Admin --> U10
+Admin --> U11
+Admin --> U12
+
+U0 --> Member : include
+
+@enduml
+
